@@ -2,22 +2,22 @@ package clases;
 
 public class Facturas {
 	
-	private int idFactuta;
+	private int idFactura;
 	
 	private int IdCliente;
 
-	public Facturas(int idFactuta, int idCliente) {
+	public Facturas(int idFactura, int idCliente) {
 		super();
-		this.idFactuta = idFactuta;
+		this.idFactura = idFactura;
 		IdCliente = idCliente;
 	}
 
-	public int getIdFactuta() {
-		return idFactuta;
+	public int getIdFactura() {
+		return idFactura;
 	}
 
-	public void setIdFactuta(int idFactuta) {
-		this.idFactuta = idFactuta;
+	public void setIdFactura(int idFactura) {
+		this.idFactura = idFactura;
 	}
 
 	public int getIdCliente() {
@@ -30,7 +30,7 @@ public class Facturas {
 
 	@Override
 	public String toString() {
-		return "Facturas [idFactuta=" + idFactuta + ", IdCliente=" + IdCliente + "]";
+		return "Facturas [idFactuta=" + idFactura + ", IdCliente=" + IdCliente + "]";
 	}
 
 	

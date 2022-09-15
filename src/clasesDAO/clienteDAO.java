@@ -2,7 +2,10 @@ package clasesDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import clases.Cliente;
 import factory.DbMySQL;
@@ -27,9 +30,9 @@ public class clienteDAO implements DAO<Cliente>{
 	public void CreateTable() {
 		try {
 			conn = getConnection();
-			String dropTableInMysql= "DROP TABLE IF EXISTS clientes";
-			conn.prepareStatement(dropTableInMysql).execute();
-			conn.commit();
+//			String dropTableInMysql= "DROP TABLE IF EXISTS clientes";
+//			conn.prepareStatement(dropTableInMysql).execute();
+//			conn.commit();
 			String tablaPersonaMYSQL = "CREATE TABLE clientes(" +
 					"id INT," +
 					"nombre VARCHAR(500),"+ 
@@ -57,10 +60,32 @@ public class clienteDAO implements DAO<Cliente>{
 			System.out.println("Datos agregados con éxito");
 			ps.close();
 			conn.commit();
+//			conn.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
+	public List<Cliente>getClientes(){
+		List<Cliente>c = new ArrayList<>();
+		try {
+			conn = getConnection();
+			String select = "SELECT c.*, COUNT(f.id) AS total FROM clientes c JOIN facturas f ON c.id = f.id_cliente GROUP BY c.id ORDER BY `total` DESC LIMIT 20";
+			PreparedStatement ps = conn.prepareStatement(select);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Cliente cliente = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3));
+				System.out.println(cliente);
+				c.add(cliente);
+			}
+			ps.close();
+			conn.commit();
 			conn.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		return c;
+		
 	}
 
 }

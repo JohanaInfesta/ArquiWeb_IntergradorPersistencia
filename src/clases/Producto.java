@@ -36,6 +36,11 @@ public class Producto {
 	public void setValor(int valor) {
 		this.valor = valor;
 	}
+
+	@Override
+	public String toString() {
+		return "Producto [idProducto=" + idProducto + ", nombre=" + nombre + ", valor=" + valor + "]";
+	}
 	
 	
 }

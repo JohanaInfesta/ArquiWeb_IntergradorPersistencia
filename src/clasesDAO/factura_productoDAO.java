@@ -26,14 +26,14 @@ public class factura_productoDAO implements DAO<Factura_Producto>{
 	public void CreateTable() {
 		try {
 			conn = getConnection();
-			String dropTableInMysql= "DROP TABLE IF EXISTS factura_producto";
-			conn.prepareStatement(dropTableInMysql).execute();
-			conn.commit();
+//			String dropTableInMysql= "DROP TABLE IF EXISTS factura_producto";
+//			conn.prepareStatement(dropTableInMysql).execute();
+//			conn.commit();
 			String tablaPersonaMYSQL = "CREATE TABLE factura_producto(" +
 					"id_factura INT," +
 					"id_producto INT,"+ 
 					"cantidad INT,"+
-					"FOREIGN KEY(id_factura)REFERENCES facturas (id)," +
+					"FOREIGN KEY(id_factura) REFERENCES facturas (id)," +
 					"FOREIGN KEY(id_producto) REFERENCES producto (id))";
 			conn.prepareStatement(tablaPersonaMYSQL).execute();
 			conn.commit();
@@ -41,7 +41,6 @@ public class factura_productoDAO implements DAO<Factura_Producto>{
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override
@@ -52,12 +51,12 @@ public class factura_productoDAO implements DAO<Factura_Producto>{
 			PreparedStatement ps = conn.prepareStatement(insert);
 			ps.setInt(1, t.getIdFactura());
 			ps.setInt(2, t.getIdProducto());
-			ps.setInt(2, t.getCantidad());
+			ps.setInt(3, t.getCantidad());
 			ps.executeUpdate();
 			System.out.println("Datos agregados con éxito");
 			ps.close();
 			conn.commit();
-			conn.close();
+//			conn.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}

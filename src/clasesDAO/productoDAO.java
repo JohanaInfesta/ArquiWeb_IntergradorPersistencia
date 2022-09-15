@@ -2,6 +2,7 @@ package clasesDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import clases.Producto;
@@ -17,7 +18,7 @@ public class productoDAO implements DAO<Producto>{
 		conn = DbMySQL.getInstance().getConnection();
 		return conn;
 	}
-	
+
 	public productoDAO() {
 		super();
 	}
@@ -26,9 +27,9 @@ public class productoDAO implements DAO<Producto>{
 	public void CreateTable() {
 		try {
 			conn = getConnection();
-			String dropTableInMysql= "DROP TABLE IF EXISTS producto";
-			conn.prepareStatement(dropTableInMysql).execute();
-			conn.commit();
+			//			String dropTableInMysql= "DROP TABLE IF EXISTS producto";
+			//			conn.prepareStatement(dropTableInMysql).execute();
+			//			conn.commit();
 			String tablaPersonaMYSQL = "CREATE TABLE producto(" +
 					"id INT," +
 					"nombre VARCHAR(500),"+ 
@@ -40,14 +41,14 @@ public class productoDAO implements DAO<Producto>{
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
 	public void Insert(Producto t) {
 		try {
 			conn = getConnection();
-			String insert = "INSERT INTO clientes (id, nombre, valor) VALUES(?,?,?)";
+			String insert = "INSERT INTO producto (id, nombre, valor) VALUES(?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(insert);
 			ps.setInt(1, t.getIdProducto());
 			ps.setString(2, t.getNombre());
@@ -62,4 +63,27 @@ public class productoDAO implements DAO<Producto>{
 		}
 	}
 
+	public Producto getProducto() {
+		Producto p = null;
+		try {
+			conn = getConnection();
+			String select = "SELECT p.*, SUM(p.valor * fp.cantidad) as total "
+								+ "FROM producto p JOIN factura_producto fp ON (p.id = fp.id_producto)"
+								+ " GROUP BY id_producto"
+								+ " ORDER BY `total`"
+								+ " DESC LIMIT 1";
+			PreparedStatement ps = conn.prepareStatement(select);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				p = new Producto(rs.getInt(1), rs.getString(2), rs.getInt(3));
+			}
+			conn.commit();
+			ps.close();
+			conn.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		System.out.println(p);
+		return p;
+	}
 }
