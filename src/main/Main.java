@@ -38,8 +38,8 @@ public class Main {
 		factura_productoDAO fpDAO = new factura_productoDAO();
 		fpDAO.CreateTable();
 
-		pDAO.getProducto();
-		cDAO.getClientes();
+//		pDAO.getProducto();
+//		cDAO.getClientes();
 
 //			@SuppressWarnings("deprecation")
 //			CSVParser parser = CSVFormat.DEFAULT.withHeader().parse(new

@@ -30,9 +30,9 @@ public class clienteDAO implements DAO<Cliente>{
 	public void CreateTable() {
 		try {
 			conn = getConnection();
-//			String dropTableInMysql= "DROP TABLE IF EXISTS clientes";
-//			conn.prepareStatement(dropTableInMysql).execute();
-//			conn.commit();
+			String dropTableInMysql= "DROP TABLE IF EXISTS clientes";
+			conn.prepareStatement(dropTableInMysql).execute();
+			conn.commit();
 			String tablaPersonaMYSQL = "CREATE TABLE clientes(" +
 					"id INT," +
 					"nombre VARCHAR(500),"+ 

@@ -26,9 +26,9 @@ public class factura_productoDAO implements DAO<Factura_Producto>{
 	public void CreateTable() {
 		try {
 			conn = getConnection();
-//			String dropTableInMysql= "DROP TABLE IF EXISTS factura_producto";
-//			conn.prepareStatement(dropTableInMysql).execute();
-//			conn.commit();
+			String dropTableInMysql= "DROP TABLE IF EXISTS factura_producto";
+			conn.prepareStatement(dropTableInMysql).execute();
+			conn.commit();
 			String tablaPersonaMYSQL = "CREATE TABLE factura_producto(" +
 					"id_factura INT," +
 					"id_producto INT,"+ 
