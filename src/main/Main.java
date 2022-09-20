@@ -2,33 +2,38 @@ package main;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import clasesDAO.clienteDAO;
 import clasesDAO.facturaDAO;
 import clasesDAO.factura_productoDAO;
 import clasesDAO.productoDAO;
+import factory.CreacionDbMySQL;
 
 
 public class Main {
 
-	public static void main(String[] args) throws FileNotFoundException, IOException {
+	public static void main(String[] args) throws FileNotFoundException, IOException, SQLException {
 
 
+		CreacionDbMySQL creacionDB = new CreacionDbMySQL();
+		creacionDB.conecionBase();
+		
 		clienteDAO cDAO = new clienteDAO();
-//		cDAO.CreateTable();
 		facturaDAO fDAO = new facturaDAO();
-//		fDAO.CreateTable();
 		productoDAO pDAO = new productoDAO();
-//		pDAO.CreateTable();
 		factura_productoDAO fpDAO = new factura_productoDAO();
-//		fpDAO.CreateTable();
+		cDAO.CreateTable();
+		fDAO.CreateTable();
+		pDAO.CreateTable();
+		fpDAO.CreateTable();
 
 		
 
-//		 cDAO.insertarListadoCSV(); 
-//		 pDAO.insertarListadoCSV();
-//		 fDAO.insertarListadoCSV(); 
-//		 fpDAO.insertarListadoCSV();
+		 cDAO.insertarListadoCSV(); 
+		 pDAO.insertarListadoCSV();
+		 fDAO.insertarListadoCSV(); 
+		 fpDAO.insertarListadoCSV();
 		
 
 		pDAO.getProducto();

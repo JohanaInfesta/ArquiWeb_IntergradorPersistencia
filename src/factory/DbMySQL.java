@@ -7,8 +7,9 @@ import java.sql.SQLException;
 
 public class DbMySQL {
 
+	
 	String driver = "com.mysql.cj.jdbc.Driver";
-	String uri = "jdbc:mysql://localhost:3306/test";
+	String uri = "jdbc:mysql://localhost:3306/entregable_persistencia";
 	
 	
 	private static DbMySQL connectionDB = null;
