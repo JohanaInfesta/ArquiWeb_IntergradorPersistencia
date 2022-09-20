@@ -1,8 +1,15 @@
 package clasesDAO;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
 import clases.Factura_Producto;
 import factory.DbMySQL;
@@ -59,6 +66,18 @@ public class factura_productoDAO implements DAO<Factura_Producto>{
 //			conn.close();
 		}catch(SQLException e){
 			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void insertarListadoCSV()throws FileNotFoundException, IOException {
+		@SuppressWarnings("deprecation")
+		CSVParser parser = CSVFormat.DEFAULT.withHeader().parse(new
+				FileReader("./src/main/facturas-productos.csv"));
+		for(CSVRecord row: parser) {
+			Factura_Producto fp = new Factura_Producto (Integer.parseInt(row.get("idFactura")), Integer.parseInt(row.get("idProducto")), Integer.parseInt(row.get("cantidad")));
+			this.Insert(fp);
 		}
 		
 	}

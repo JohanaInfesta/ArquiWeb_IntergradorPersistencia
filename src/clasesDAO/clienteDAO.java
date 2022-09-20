@@ -1,11 +1,18 @@
 package clasesDAO;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 
 import clases.Cliente;
 import factory.DbMySQL;
@@ -85,6 +92,18 @@ public class clienteDAO implements DAO<Cliente>{
 			e.printStackTrace();
 		}
 		return c;
+		
+	}
+
+	@Override
+	public void insertarListadoCSV() throws FileNotFoundException, IOException {
+		@SuppressWarnings("deprecation")
+		CSVParser parser = CSVFormat.DEFAULT.withHeader().parse(new
+				FileReader("./src/main/clientes.csv"));
+		for(CSVRecord row: parser) {
+			Cliente c = new Cliente (Integer.parseInt(row.get("idCliente")), row.get("nombre"), row.get("email"));
+			this.Insert(c);
+		}
 		
 	}
 
