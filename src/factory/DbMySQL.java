@@ -4,7 +4,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/**
+ * 
+ * @author Johana Infesta, Rocio giannaccini, Juan Mauro, Juan Manuel Campo
+ *
+ */
 public class DbMySQL {
 
 	
@@ -24,7 +28,11 @@ public class DbMySQL {
 			System.exit(1);
 		}
 	}
-	
+	/**
+	 * 
+	 * @return conexion con la DB
+	 * @throws SQLException
+	 */
 	public Connection getConnection() throws SQLException{
 		Connection conn = DriverManager.getConnection(uri, "root", "");
 		conn.setAutoCommit(false);

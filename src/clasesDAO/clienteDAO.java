@@ -17,7 +17,11 @@ import org.apache.commons.csv.CSVRecord;
 import clases.Cliente;
 import factory.DbMySQL;
 import interfaces.DAO;
-
+/**
+ * 
+ * @author Johana Infesta, Rocio giannaccini, Juan Mauro, Juan Manuel Campo
+ *
+ */
 public class clienteDAO implements DAO<Cliente>{
 
 	private Connection conn = null;
@@ -73,6 +77,10 @@ public class clienteDAO implements DAO<Cliente>{
 		}
 	}
 	
+	/**
+	 * 
+	 * @return Lista de clientes en orden Desc de quien facturo mas
+	 */
 	public List<Cliente>getClientes(){
 		List<Cliente>c = new ArrayList<>();
 		try {

@@ -1,5 +1,9 @@
 package clases;
-
+/**
+ * 
+ * @author Johana Infesta, Rocio giannaccini, Juan Mauro, Juan Manuel Campo
+ *
+ */
 public class Facturas {
 	
 	private int idFactura;

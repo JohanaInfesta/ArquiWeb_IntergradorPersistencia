@@ -14,7 +14,11 @@ import org.apache.commons.csv.CSVRecord;
 import clases.Factura_Producto;
 import factory.DbMySQL;
 import interfaces.DAO;
-
+/**
+ * 
+ * @author Johana Infesta, Rocio giannaccini, Juan Mauro, Juan Manuel Campo
+ *
+ */
 public class factura_productoDAO implements DAO<Factura_Producto>{
 
 	private Connection conn = null;

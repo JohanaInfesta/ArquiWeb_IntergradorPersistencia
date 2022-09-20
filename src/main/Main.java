@@ -9,8 +9,11 @@ import clasesDAO.facturaDAO;
 import clasesDAO.factura_productoDAO;
 import clasesDAO.productoDAO;
 import factory.CreacionDbMySQL;
-
-
+/**
+ * 
+ * @author Johana Infesta, Rocio giannaccini, Juan Mauro, Juan Manuel Campo
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, SQLException {

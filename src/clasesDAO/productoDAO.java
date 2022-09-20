@@ -15,7 +15,11 @@ import org.apache.commons.csv.CSVRecord;
 import clases.Producto;
 import factory.DbMySQL;
 import interfaces.DAO;
-
+/**
+ * 
+ * @author Johana Infesta, Rocio giannaccini, Juan Mauro, Juan Manuel Campo
+ *
+ */
 public class productoDAO implements DAO<Producto>{
 
 	private Connection conn = null;
@@ -69,7 +73,10 @@ public class productoDAO implements DAO<Producto>{
 			e.printStackTrace();
 		}
 	}
-
+/**
+ * 
+ * @return producto mas vendico (cantidad facturada multiplicado por su valor)
+ */
 	public Producto getProducto() {
 		Producto p = null;
 		try {
